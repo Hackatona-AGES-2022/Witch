@@ -17,14 +17,14 @@ export class PostService extends BaseService<Post, number> {
 		const feedPosts: FeedPost[] = []
 		for (const post of posts) {
 			const author = await this.knex.table('users').where('idUser', post.idUser).first()
-			const user = { name: author.name, avatar: author.avatar }
+			const user = { name: author.username, avatar: author.avatar }
 			const comments = await this.knex.table('comments').where('idPost', post.idPost)
 			const idCommentAuthors = uniq(comments.map((c) => c.idUser))
 			const authorUsers = await this.knex.table('users').whereIn('idUser', idCommentAuthors)
 			const authorUsersGrouped = groupBy(authorUsers, (user) => user.idUser)
 			const feedComments: FeedComment[] = comments.map((c) => {
 				const user = authorUsersGrouped[c.idUser][0]
-				return { content: c.content, user: { name: user.name, avatar: user.avatar } }
+				return { content: c.content, user: { name: user.username, avatar: user.avatar } }
 			})
 
 			const [supportNumber] = await this.knex.table('support').where('idPost', post.idPost).count('idSupport')
