@@ -40,7 +40,6 @@ export class UserService extends BaseService<User, number> {
 	}
 
 	async register(user: UserCreate): Promise<number> {
-		console.log(user.email)
 		await this.validateCreation(user)
 		const encryptedPassword = this.encryptor.encrypt(user.password)
 		const model: UserCreate = {
