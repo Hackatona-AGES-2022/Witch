@@ -57,12 +57,17 @@
 }
 
 .rounded{
-  background-color: #FD8087;
-  margin-top: 5%;
-  width: 55px;
-  height: 55px;
+  background-color: #FD8087!important;
+  margin-top: 5%!important;
+  width: 55px!important;
+  height: 55px!important;
 }
 
 .white{
   color: white;
+}
+
+
+.swal2-styled.swal2-confirm{
+  background-color: #FD8087!important;
 }

@@ -4,6 +4,8 @@ import React from "react";
 import Webcam from "react-webcam";
 import styles from "./IdentityConfirmation.module.css";
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -17,12 +19,28 @@ export function IdentityConfirmation() {
 
   
   const WebcamCapture = () => {
+    const navigate = useNavigate()
     const webcamRef = React.useRef(null as any);
     const [imgSrc, setImgSrc] = React.useState(null);
   
     const capture = React.useCallback(() => {
       const imageSrc = webcamRef!.current!.getScreenshot();
       setImgSrc(imageSrc);
+
+      setTimeout(async () => {
+        Swal.fire({
+          title: 'Um momento',
+          text: 'Estamos validando sua foto',
+          showConfirmButton: false
+        })
+        Swal.showLoading()
+        setTimeout(() => {
+          Swal.hideLoading()
+          Swal.fire({ title: 'Tudo certo!', text:'Estamos prontos para continuar', icon: 'success', confirmButtonColor: 'primary', allowEscapeKey: false, didClose: () => navigate('/home') })
+        }, 3500)
+
+        
+      }, 1000)
       
     }, [webcamRef, setImgSrc]);
   
