@@ -1,3 +1,5 @@
 .page {
   height: calc(100vh - 5rem - 106px);
+  @apply divide-y;
+  padding-bottom: 120px;
 }

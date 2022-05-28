@@ -11,6 +11,6 @@ export class CommentService extends BaseService<Comment, number> {
 	}
 
 	protected get table(): Knex.QueryBuilder<Comment, any> {
-		return this.knexService.connect().table('comment')
+		return this.knexService.connect().table('comments')
 	}
 }
