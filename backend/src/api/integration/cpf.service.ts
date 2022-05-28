@@ -16,6 +16,12 @@ export class CpfService {
 		if (cpf.endsWith('0')) {
 			return Promise.resolve({ data: { genero: 'F' } })
 		}
-		return this.http.get(`${this.baseURL}/${this.accessToken}/${this.scopeCode}/${cpf}/0`).toPromise()
+
+		try {
+			const response = await this.http.get(`${this.baseURL}/${this.accessToken}/${this.scopeCode}/${cpf}/0`).toPromise()
+			return response
+		} catch (error) {
+			return Promise.resolve({ data: { genero: 'M' } })
+		}
 	}
 }
