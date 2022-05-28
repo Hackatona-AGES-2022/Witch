@@ -1,13 +1,19 @@
-import { Body, Controller, Post, Request, UseGuards, ValidationPipe } from '@nestjs/common'
+import { Body, Controller, Get, Post, Request, UseGuards, ValidationPipe } from '@nestjs/common'
 import { AuthUserRequest } from '../../../@types/request'
 import { ClientLocalGuard } from '../../../auth/guards/client/client-local.guard'
 import { User } from '../../../db/models/user.model'
 import { CreatePostDto } from './dto/create-post.dto'
+import { FeedPost } from './dto/feed.dto'
 import { PostService } from './post.service'
 
 @Controller('posts')
 export class PostController {
 	constructor(private service: PostService) {}
+
+	@Get('/feed')
+	public getFeed(): Promise<FeedPost[]> {
+		return this.service.getFeed()
+	}
 
 	@Post()
 	@UseGuards(ClientLocalGuard)
