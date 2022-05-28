@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { FeedPost } from "../../types/post";
 import styles from "./Post.module.css";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
+import { useState } from "react";
 
 interface PostProps {
   post: FeedPost;
@@ -9,6 +10,8 @@ interface PostProps {
 
 export function Post({ post }: PostProps) {
   const hasWarning = Boolean(post.triggerWarning);
+  const [showPost, setShowPost] = useState(!hasWarning);
+
   return (
     <div className="flex flex-col p-6">
       <div className="flex items-center gap-2">
@@ -25,9 +28,12 @@ export function Post({ post }: PostProps) {
         <p className={styles.title}>{post.user.name}</p>
       </div>
       <div className={clsx("mt-1 relative")}>
-        <p className={clsx(hasWarning && styles.hide)}>{post.content}</p>
-        {hasWarning && (
-          <p className={clsx("absolute w-fit drop-shadow-sm", styles.view)}>
+        <p className={clsx(!showPost && styles.hide)}>{post.content}</p>
+        {!showPost && (
+          <p
+            onClick={() => setShowPost(true)}
+            className={clsx("absolute w-fit drop-shadow-sm", styles.view)}
+          >
             Visualizar mesmo assim
           </p>
         )}
