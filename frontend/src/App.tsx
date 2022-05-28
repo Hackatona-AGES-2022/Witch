@@ -14,6 +14,7 @@ import { Register } from "./pages/register/Register";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Report } from "./pages/reports/Report";
+import { Info } from "./pages/info/Info";
 
 const customTheme = createTheme({
   palette: {
@@ -55,6 +56,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/cadastro" element={<Register />} />
             <Route path="/relato" element={<Report />} />
+            <Route path="/info" element={<Info />} />
             <Route path="/" element={<Navigate to="/home" />} />
           </Routes>
         </Router>
