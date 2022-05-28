@@ -84,7 +84,10 @@ export function Login() {
         </p>
         </div>
         <div className={styles.buttons}>
-        <Button color="primary" variant="contained" fullWidth type="submit">
+        <Button  style={{
+            borderRadius: 50,
+            height: 50,
+        }} color="primary" variant="contained" fullWidth type="submit">
           Entrar
         </Button>
         <p className={clsx(styles.fontcenter, styles.textPrimary)}> 

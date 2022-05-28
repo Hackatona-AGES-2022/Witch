@@ -124,7 +124,10 @@ export function Register() {
           helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
         />
         <div className={styles.buttons}>
-          <Button color="primary" variant="contained" fullWidth type="submit">
+          <Button  style={{
+            borderRadius: 50,
+            height: 50,
+        }} color="primary" variant="contained" fullWidth type="submit">
             Cadastrar
           </Button>
         </div>
