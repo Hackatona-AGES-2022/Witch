@@ -1,3 +1,4 @@
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import React, { useState } from "react";
 import {
   BrowserRouter as Router,
@@ -9,13 +10,12 @@ import "./App.css";
 import { LoadingSpinner } from "./components/spinner/Spinner";
 import { GlobalContext } from "./context/GlobalContext";
 import { Home } from "./pages/home/Home";
+import { IdentityConfirmation } from "./pages/identity-confirmation/IdentityConfirmation";
+import { Info } from "./pages/info/Info";
 import { Login } from "./pages/login/Login";
 import { Register } from "./pages/register/Register";
-import { ProtectedRoute } from "./ProtectedRoute";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Report } from "./pages/reports/Report";
-import { Info } from "./pages/info/Info";
-import { Webcam } from "./pages/webcam/webcam";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 const customTheme = createTheme({
   palette: {
@@ -49,7 +49,10 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/cadastro" element={<Register />} />
-            <Route path="/webcam" element={<Webcam />} />
+            <Route
+              path="/confirmar-identidade"
+              element={<IdentityConfirmation />}
+            />
             <Route
               path="/home"
               element={
@@ -74,7 +77,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            
+
             <Route path="/" element={<Navigate to="/home" />} />
           </Routes>
         </Router>
