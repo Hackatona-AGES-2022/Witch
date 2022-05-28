@@ -40,10 +40,8 @@ export function Login() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <Logo className="w-60" />
       <p className="text-lg">
-        Bem vindo! Por favor informe seu e-mail e senha abaixo para realizar o
-        login
+        Bem vinda, Witch!
       </p>
 
       <form
@@ -54,7 +52,7 @@ export function Login() {
           fullWidth
           id="email"
           name="email"
-          label="Email"
+          label="E-mail"
           value={formik.values.email}
           className={styles.custom}
           variant="outlined"
@@ -75,9 +73,15 @@ export function Login() {
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
         />
+        <p className="text-lg"> 
+          Esqueci a senha 
+        </p>
         <Button color="primary" variant="contained" fullWidth type="submit">
-          Submit
+          Entrar
         </Button>
+        <p className="text-lg"> 
+          Cadastrar
+        </p>
       </form>
     </div>
   );

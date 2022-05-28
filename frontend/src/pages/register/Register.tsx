@@ -26,12 +26,15 @@ export function Register() {
   const formik = useFormik({
     initialValues: {
       name: "",
+      username: "",
       email: "",
+      cpf: "",
       password: "",
+      confirmPassword: ""
     },
     validationSchema: validationSchema,
-    onSubmit: ({ email, password, name }) => {
-      post("/", { email, password, name }).then(
+    onSubmit: ({ email, username, password, name }) => {
+      post("/", { email, username, password, name }).then(
         (response) => response && navigate("/login")
       );
     },
@@ -39,9 +42,8 @@ export function Register() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <Logo className="w-60" />
       <p className="text-lg">
-        Bem vindo! Por favor informe seus dados para realizar o cadastro
+        Venha se tornar uma Witch
       </p>
 
       <form
@@ -58,15 +60,36 @@ export function Register() {
           error={formik.touched.name && Boolean(formik.errors.name)}
           helperText={formik.touched.name && formik.errors.name}
         />
+
+        <TextField
+          fullWidth
+          id="username"
+          name="username"
+          label="Username"
+          value={formik.values.username}
+          onChange={formik.handleChange}
+          error={formik.touched.username && Boolean(formik.errors.username)}
+          helperText={formik.touched.username && formik.errors.username}
+        />
         <TextField
           fullWidth
           id="email"
           name="email"
-          label="Email"
+          label="E-mail"
           value={formik.values.email}
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
           helperText={formik.touched.email && formik.errors.email}
+        />
+        <TextField
+          fullWidth
+          id="cpf"
+          name="cpf"
+          label="CPF"
+          value={formik.values.cpf}
+          onChange={formik.handleChange}
+          error={formik.touched.email && Boolean(formik.errors.cpf)}
+          helperText={formik.touched.cpf && formik.errors.cpf}
         />
         <TextField
           fullWidth
@@ -79,9 +102,23 @@ export function Register() {
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
         />
+        <TextField
+          fullWidth
+          id="confirmPassword"
+          name="confirmPassword"
+          label="Confirme a Senha"
+          type="password"
+          value={formik.values.confirmPassword}
+          onChange={formik.handleChange}
+          error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
+          helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
+        />
         <Button color="primary" variant="contained" fullWidth type="submit">
-          Submit
+          Cadastrar
         </Button>
+        <p className="text-lg"> 
+          Já possui conta? Entre
+        </p>
       </form>
     </div>
   );
