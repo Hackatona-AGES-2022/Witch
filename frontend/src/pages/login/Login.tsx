@@ -56,6 +56,8 @@ export function Login() {
           name="email"
           label="Email"
           value={formik.values.email}
+          className={styles.custom}
+          variant="outlined"
           onChange={formik.handleChange}
           error={formik.touched.email && Boolean(formik.errors.email)}
           helperText={formik.touched.email && formik.errors.email}
@@ -66,7 +68,9 @@ export function Login() {
           name="password"
           label="Senha"
           type="password"
+          className={styles.custom}
           value={formik.values.password}
+          variant="outlined"
           onChange={formik.handleChange}
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}

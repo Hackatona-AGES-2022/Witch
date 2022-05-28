@@ -12,7 +12,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-app.listen(process.env.PORT || 3000, (err) => {
+app.listen(process.env.PORT || 4000, (err) => {
   if (err) return console.error("Algum problema aconteceu", err);
   console.log("Tudo ok");
 });

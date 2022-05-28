@@ -1,3 +1,6 @@
 .form {
   width: 60%;
 }
+.custom fieldset {
+  border-radius: 50px;
+}

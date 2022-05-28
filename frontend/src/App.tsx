@@ -12,11 +12,31 @@ import { Home } from "./pages/home/Home";
 import { Login } from "./pages/login/Login";
 import { Register } from "./pages/register/Register";
 import { ProtectedRoute } from "./ProtectedRoute";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const customTheme = createTheme({
+  palette: {
+    primary: {
+      light: "#112233",
+      main: "#ffc0cb",
+      dark: "#646464",
+      contrastText: "#fff"
+    },
+    secondary: {
+      light: "#fffff",
+      main: "#FD8087",
+      dark: "#646464",
+      contrastText: "#000"
+    }
+  }
+});
+
 
 function App() {
   const [loading, setLoading] = useState(false);
 
   return (
+    <ThemeProvider theme={customTheme}> 
     <GlobalContext.Provider value={{ loading, setLoading }}>
       <Router>
         <LoadingSpinner loading={loading} />
@@ -35,6 +55,7 @@ function App() {
         </Routes>
       </Router>
     </GlobalContext.Provider>
+    </ThemeProvider>
   );
 }
 
