@@ -13,7 +13,10 @@ export function Post({ post }: PostProps) {
         <div className="flex">
           <img
             className={clsx("rounded-full m-2", styles.image)}
-            src="https://www.w3schools.com/howto/img_avatar2.png"
+            src={
+              post.user.avatar ??
+              "https://www.w3schools.com/howto/img_avatar2.png"
+            }
             alt="avatar"
           />
         </div>
