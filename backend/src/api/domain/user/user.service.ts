@@ -1,6 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common'
 import { Knex } from 'knex'
-import { Profile } from 'passport-facebook-token'
 import { Address } from '../../../db/models/address.model'
 import { User, UserCreate } from '../../../db/models/user.model'
 import { KnexService } from '../../../knex/knex.service'
@@ -51,7 +50,7 @@ export class UserService extends BaseService<User, number> {
 			idGoogle: user.idGoogle,
 			cpf: user.cpf,
 			username: user.username,
-			avatar: user.avatar,
+			avatar: user.avatar ?? `https://ui-avatars.com/api/?name=${user.name}`,
 		}
 		const [id] = (await super.create(model)) as number[]
 		return id
