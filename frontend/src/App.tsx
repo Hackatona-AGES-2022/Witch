@@ -28,6 +28,13 @@ const customTheme = createTheme({
       dark: "#646464",
       contrastText: "#000"
     }
+  },
+  typography: {
+    fontFamily: [
+      "Poppins",
+      "sans-serif",
+      "Monospace",
+    ].join(",")
   }
 });
 
