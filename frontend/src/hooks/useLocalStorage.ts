@@ -10,7 +10,10 @@ const getItem = (
 };
 
 const setItem = (name: string, item: any) =>
-  localStorage.setItem(prefix + name, JSON.stringify(item));
+  localStorage.setItem(
+    prefix + name,
+    typeof item === "string" ? item : JSON.stringify(item)
+  );
 
 const removeItem = (name: string) => localStorage.removeItem(prefix + name);
 

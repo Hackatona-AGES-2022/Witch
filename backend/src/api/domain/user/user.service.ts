@@ -24,9 +24,7 @@ export class UserService extends BaseService<User, number> {
 
 	async profileById(idUser: number): Promise<ProfileDto> {
 		const user = await this.findById(idUser)
-		const addresses = await this.addressService.byUserId(idUser)
-		// TODO: fetch payment methods
-		return { ...user, addresses }
+		return { idUser: user.idUser, name: user.name, username: user.username, avatar: user.avatar }
 	}
 
 	async myAddresses(idUser: number): Promise<Address[]> {
@@ -42,6 +40,7 @@ export class UserService extends BaseService<User, number> {
 	}
 
 	async register(user: UserCreate): Promise<number> {
+		console.log(user.email)
 		await this.validateCreation(user)
 		const encryptedPassword = this.encryptor.encrypt(user.password)
 		const model: UserCreate = {

@@ -3,7 +3,6 @@ import clsx from "clsx";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import { Logo } from "../../components/logo/Logo";
 import { useApi } from "../../hooks/useApi";
 import styles from "./Register.module.css";
 
@@ -18,8 +17,11 @@ const validationSchema = yup.object({
   password: yup
     .string()
     .min(8, "Senha deve ter no mínimo 8 caracteres")
-    .required("Campo obrigatório"),
-  confirmPassword: yup.string().required("Campo obrigatório"),
+    .required("Campo obrigatório")
+    .oneOf([yup.ref("confirmPassword"), null], "As senhas não conferem"),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "As senhas não conferem"),
 });
 
 export function Register() {
@@ -33,11 +35,11 @@ export function Register() {
       email: "",
       cpf: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
     },
     validationSchema: validationSchema,
-    onSubmit: ({ email, username, password, name }) => {
-      post("/", { email, username, password, name }).then(
+    onSubmit: ({ email, username, password, name, cpf }) => {
+      post("/", { email, username, password, name, cpf }).then(
         (response) => response && navigate("/login")
       );
     },
@@ -48,12 +50,12 @@ export function Register() {
       <p className={styles.witch}>
         Venha se tornar uma <span className={styles.textSecondary}>Witch!</span>
       </p>
-      
+
       <form
         onSubmit={formik.handleSubmit}
         className={clsx(styles.form, "flex flex-col gap-5 mt-10")}
       >
-      <div className={styles.inputs}></div>
+        <div className={styles.inputs}></div>
         <TextField
           fullWidth
           id="name"
@@ -120,19 +122,33 @@ export function Register() {
           value={formik.values.confirmPassword}
           className={styles.custom}
           onChange={formik.handleChange}
-          error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
-          helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
+          error={
+            formik.touched.confirmPassword &&
+            Boolean(formik.errors.confirmPassword)
+          }
+          helperText={
+            formik.touched.confirmPassword && formik.errors.confirmPassword
+          }
         />
         <div className={styles.buttons}>
-          <Button  style={{
-            borderRadius: 50,
-            height: 50,
-        }} color="primary" variant="contained" fullWidth type="submit">
+          <Button
+            style={{
+              borderRadius: 50,
+              height: 50,
+            }}
+            color="primary"
+            variant="contained"
+            fullWidth
+            type="submit"
+          >
             Cadastrar
           </Button>
         </div>
-        <p className={clsx(styles.fontcenter, styles.textPrimary)}> 
-          Já possui conta? <span className={styles.textLink}>Entre</span>
+        <p className={clsx(styles.fontcenter, styles.textPrimary)}>
+          Já possui conta?{" "}
+          <span onClick={() => navigate("/login")} className={styles.textLink}>
+            Entre
+          </span>
         </p>
       </form>
     </div>

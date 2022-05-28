@@ -38,13 +38,16 @@ const customTheme = createTheme({
 
 function App() {
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState({});
 
   return (
     <ThemeProvider theme={customTheme}>
-      <GlobalContext.Provider value={{ loading, setLoading }}>
+      <GlobalContext.Provider value={{ loading, setLoading, user, setUser }}>
         <Router>
           <LoadingSpinner loading={loading} />
           <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/cadastro" element={<Register />} />
             <Route
               path="/home"
               element={
@@ -53,10 +56,22 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/login" element={<Login />} />
-            <Route path="/cadastro" element={<Register />} />
-            <Route path="/relato" element={<Report />} />
-            <Route path="/info" element={<Info />} />
+            <Route
+              path="/relato"
+              element={
+                <ProtectedRoute>
+                  <Report />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/info"
+              element={
+                <ProtectedRoute>
+                  <Info />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/" element={<Navigate to="/home" />} />
           </Routes>
         </Router>
