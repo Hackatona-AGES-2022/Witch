@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post, Request, UseGuards, ValidationPipe } from '@nestjs/common'
 import { AuthUserRequest } from '../../../@types/request'
-import { ClientLocalGuard } from '../../../auth/guards/client/client-local.guard'
+import { ClientJwtAuthGuard } from '../../../auth/guards/client/client-jwt.guard'
 import { User } from '../../../db/models/user.model'
 import { CreatePostDto } from './dto/create-post.dto'
 import { FeedPost } from './dto/feed.dto'
@@ -16,7 +16,7 @@ export class PostController {
 	}
 
 	@Post()
-	@UseGuards(ClientLocalGuard)
+	@UseGuards(ClientJwtAuthGuard)
 	public async register(
 		@Body(new ValidationPipe()) post: CreatePostDto,
 		@Request() req: AuthUserRequest<User>
