@@ -2,7 +2,10 @@ import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator'
 import { UserCreate } from '../../../../db/models/user.model'
 
 export class CreateUserDto implements UserCreate {
+	@IsString()
+	@IsNotEmpty()
 	cpf: string
+
 	@IsString()
 	@IsNotEmpty()
 	name: string

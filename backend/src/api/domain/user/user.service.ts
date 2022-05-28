@@ -5,7 +5,9 @@ import { Address } from '../../../db/models/address.model'
 import { User, UserCreate } from '../../../db/models/user.model'
 import { KnexService } from '../../../knex/knex.service'
 import { Encryptor } from '../../../utils/encryptor/password.encryptor'
+import { GenderValidator } from '../../../validation/gender.validator'
 import { BaseService } from '../../base/base.service'
+import { CpfService } from '../../integration/cpf.service'
 import { AddressService } from '../address/address.service'
 import { ProfileDto } from './dto/profile.dto'
 
@@ -14,7 +16,8 @@ export class UserService extends BaseService<User, number> {
 	constructor(
 		private readonly knexService: KnexService,
 		private readonly encryptor: Encryptor,
-		private readonly addressService: AddressService
+		private readonly addressService: AddressService,
+		private readonly cpfService: CpfService
 	) {
 		super('idUser')
 	}
@@ -39,10 +42,7 @@ export class UserService extends BaseService<User, number> {
 	}
 
 	async register(user: UserCreate): Promise<number> {
-		if ((await this.existsByEmail(user.email)) || (await this.existsByCPF(user.cpf))) {
-			throw new BadRequestException('Usuário já cadastrado')
-		}
-
+		await this.validateCreation(user)
 		const encryptedPassword = this.encryptor.encrypt(user.password)
 		const model: UserCreate = {
 			email: user.email,
@@ -59,12 +59,31 @@ export class UserService extends BaseService<User, number> {
 		return id
 	}
 
+	private async validateCreation(user: UserCreate): Promise<void> {
+		if ((await this.existsByEmail(user.email)) || (await this.existsByCPF(user.cpf))) {
+			throw new BadRequestException('Usuário já cadastrado')
+		}
+
+		if (await this.existsByUsername(user.username)) {
+			throw new BadRequestException('Nome de usuário em uso')
+		}
+
+		const profile = await this.cpfService.getProfileFromCpf(user.cpf)
+		if (!GenderValidator.isFemale(profile.data)) {
+			throw new BadRequestException('Esta aplicação é restrita para mulheres')
+		}
+	}
+
 	private async existsByEmail(email: string): Promise<boolean> {
 		return this.table.whereExists(this.table.where('email', email)).first()
 	}
 
 	private async existsByCPF(cpf: string): Promise<boolean> {
 		return this.table.whereExists(this.table.where('cpf', cpf)).first()
+	}
+
+	private async existsByUsername(username: string): Promise<boolean> {
+		return this.table.whereExists(this.table.where('username', username)).first()
 	}
 
 	protected get table(): Knex.QueryBuilder<User> {
