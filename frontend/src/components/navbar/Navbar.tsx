@@ -25,7 +25,10 @@ export function Navbar() {
         styles.container
       )}
     >
-      <div className={styles.buttonContainer}>
+      <div
+        className={styles.buttonContainer}
+        onClick={() => navigate("/relato")}
+      >
         <span>+</span>
       </div>
 

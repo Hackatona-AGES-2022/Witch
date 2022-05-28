@@ -13,6 +13,7 @@ import { Login } from "./pages/login/Login";
 import { Register } from "./pages/register/Register";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Report } from "./pages/reports/Report";
 
 const customTheme = createTheme({
   palette: {
@@ -20,48 +21,44 @@ const customTheme = createTheme({
       light: "#112233",
       main: "#ffc0cb",
       dark: "#646464",
-      contrastText: "#fff"
+      contrastText: "#fff",
     },
     secondary: {
       light: "#fffff",
       main: "#FD8087",
       dark: "#646464",
-      contrastText: "#000"
-    }
+      contrastText: "#000",
+    },
   },
   typography: {
-    fontFamily: [
-      "Poppins",
-      "sans-serif",
-      "Monospace",
-    ].join(",")
-  }
+    fontFamily: ["Poppins", "sans-serif", "Monospace"].join(","),
+  },
 });
-
 
 function App() {
   const [loading, setLoading] = useState(false);
 
   return (
-    <ThemeProvider theme={customTheme}> 
-    <GlobalContext.Provider value={{ loading, setLoading }}>
-      <Router>
-        <LoadingSpinner loading={loading} />
-        <Routes>
-          <Route
-            path="/home"
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cadastro" element={<Register />} />
-          <Route path="/" element={<Navigate to="/home" />} />
-        </Routes>
-      </Router>
-    </GlobalContext.Provider>
+    <ThemeProvider theme={customTheme}>
+      <GlobalContext.Provider value={{ loading, setLoading }}>
+        <Router>
+          <LoadingSpinner loading={loading} />
+          <Routes>
+            <Route
+              path="/home"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cadastro" element={<Register />} />
+            <Route path="/relato" element={<Report />} />
+            <Route path="/" element={<Navigate to="/home" />} />
+          </Routes>
+        </Router>
+      </GlobalContext.Provider>
     </ThemeProvider>
   );
 }

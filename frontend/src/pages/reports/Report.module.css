@@ -1,0 +1,14 @@
+.title {
+  @apply text-2xl;
+}
+
+.inputs {
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.page {
+  height: calc(100vh - 5rem);
+}
