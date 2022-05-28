@@ -1,3 +1,60 @@
 .form {
-  width: 60%;
+  width: 90%;
+}
+.custom fieldset {
+  border-radius: 50px;
+}
+.fontcenter{
+  text-align: center;
+}
+
+.inputs{
+  width: 100%;
+}
+
+.inputs .custom {
+  margin-top: 5%;
+}
+
+.buttons{
+  width: 100%;
+  margin-top: 15%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.buttons .fontcenter{
+  margin-top: 5%;
+}
+
+.fontLeft{
+  text-align: left;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  margin-top: 2%;
+}
+
+.textPrimary{
+  color: #ffc0cb;
+  font-weight: 500;
+}
+
+.textSecondary{
+  color: #FD8087;
+  font-weight: 700;
+}
+
+.witch{
+  z-index: 10;
+  font-weight: 200;
+  font-size: 29px;
+}
+
+.textLink{
+  color: #FD8087;
+  font-weight: 700;
 }
