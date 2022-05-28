@@ -1,7 +1,8 @@
 import { createContext } from "react";
 
-interface User {
+export interface User {
   avatar?: string;
+  name: string
 }
 
 interface GlobalContextData {
@@ -12,7 +13,7 @@ interface GlobalContextData {
 }
 
 export const GlobalContext = createContext<GlobalContextData>({
-  user: {},
+  user: {} as User,
   loading: false,
   setLoading: () => {},
   setUser: () => {},

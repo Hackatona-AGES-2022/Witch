@@ -1,11 +1,12 @@
 import SearchIcon from "@mui/icons-material/Search";
-import { InputAdornment, TextField } from "@mui/material";
+import { IconButton, InputAdornment, TextField } from "@mui/material";
 import clsx from "clsx";
 import * as React from "react";
 import { useCallback, useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/GlobalContext";
 import { useApi } from "../../hooks/useApi";
 import styles from "./Header.module.css";
+// import SearchIcon from '@mui/icons-material/Search';
 
 export function Header() {
   const { user, setUser } = useContext(GlobalContext);
@@ -31,21 +32,12 @@ export function Header() {
           alt="avatar"
         />
       </div>
-
-      <TextField
-        className={styles.input}
-        name="search"
-        placeholder="O que você está procurando?"
-        value={""}
-        variant="filled"
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon color="primary" />
-            </InputAdornment>
-          ),
-        }}
-      />
+      <div className={styles.name}>
+        <p className={styles.title}>Oi, <span className={styles.weight}>{user?.name}!</span></p>
+      </div>
+      <IconButton color="primary" aria-label="Serch">
+          <SearchIcon className={styles.primary}/>
+        </IconButton>
     </div>
   );
 }

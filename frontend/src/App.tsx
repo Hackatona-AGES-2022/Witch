@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import { LoadingSpinner } from "./components/spinner/Spinner";
-import { GlobalContext } from "./context/GlobalContext";
+import { GlobalContext, User } from "./context/GlobalContext";
 import { Home } from "./pages/home/Home";
 import { IdentityConfirmation } from "./pages/identity-confirmation/IdentityConfirmation";
 import { Info } from "./pages/info/Info";
@@ -39,7 +39,7 @@ const customTheme = createTheme({
 
 function App() {
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({} as User);
 
   return (
     <ThemeProvider theme={customTheme}>

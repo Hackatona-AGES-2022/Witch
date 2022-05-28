@@ -16,3 +16,25 @@
   width: 60%;
   margin-top: 13px !important;
 }
+
+.name{
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  font-size: 1.4rem;
+  /* margin-left: -20%; */
+}
+
+.primary{
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.weight{
+  font-weight: 600;
+}
+/* .title{
+  font-size: ;
+} */
