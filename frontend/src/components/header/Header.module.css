@@ -11,3 +11,8 @@
   border: 5px solid white;
   box-sizing: content-box;
 }
+
+.input {
+  width: 60%;
+  margin-top: 13px !important;
+}
