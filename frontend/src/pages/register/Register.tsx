@@ -40,7 +40,7 @@ export function Register() {
     validationSchema: validationSchema,
     onSubmit: ({ email, username, password, name, cpf }) => {
       post("/", { email, username, password, name, cpf }).then(
-        (response) => response && navigate("/login")
+        (response) => response && navigate("/webcam")
       );
     },
   });

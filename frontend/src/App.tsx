@@ -15,6 +15,7 @@ import { ProtectedRoute } from "./ProtectedRoute";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Report } from "./pages/reports/Report";
 import { Info } from "./pages/info/Info";
+import { Webcam } from "./pages/webcam/webcam";
 
 const customTheme = createTheme({
   palette: {
@@ -48,6 +49,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/cadastro" element={<Register />} />
+            <Route path="/webcam" element={<Webcam />} />
             <Route
               path="/home"
               element={
@@ -72,6 +74,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            
             <Route path="/" element={<Navigate to="/home" />} />
           </Routes>
         </Router>

@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { Navbar } from "../../components/navbar/Navbar";
 import { useApi } from "../../hooks/useApi";
 import styles from "./Report.module.css";
+import CloseIcon from '@mui/icons-material/Close';
 
 const validationSchema = yup.object({
   content: yup.string().required("Campo obrigatório"),
@@ -30,14 +31,16 @@ export function Report() {
 
   return (
     <>
-      <div className={clsx("flex flex-col p-8", styles.page)}>
+      <div className={clsx("flex flex-col p-8 ", styles.page)}>
         <div>
-          <h1 className={styles.title}>Adicione relato</h1>
-
-          <div className="flex flex-col items-center h-screen">
+          <div className="flex flex-col items-center justify-around  h-screen">
+          <div className={styles.aligntext}>
+          <h1 className={styles.title}>Adicione relato</h1> 
+          {/* <CloseIcon></CloseIcon> */}
+          </div>
             <form
               onSubmit={formik.handleSubmit}
-              className={clsx(styles.form, "flex flex-col gap-5 mt-10 w-full")}
+              className={clsx(styles.form, "flex flex-col gap-5 w-full")}
             >
               <div className={styles.inputs}>
                 <TextField
@@ -56,30 +59,39 @@ export function Report() {
                   label="Relato"
                   required={true}
                   value={formik.values.content}
-                  className={styles.textArea}
+                  className={clsx(styles.textArea, styles.area)}
                   variant="outlined"
                   onChange={formik.handleChange}
                   multiline={true}
                   rows={5}
                 />
-                <p>
-                  Conteúdo sensível: se o seu relato aborda temas que podem ser
-                  sensíveis para outras pessoas (como por exemplo estupro, abuso
-                  psicológico, entre outros) é importante que você indique na
-                  caixa de texto abaixo
-                </p>
-                <TextField
+                  <div className={styles.mtop50}>
+                 <TextField
                   fullWidth
                   name="triggerWarning"
                   label="Conteúdo sensível"
                   required={false}
                   value={formik.values.triggerWarning}
+                  className={styles.custom}
                   variant="outlined"
                   onChange={formik.handleChange}
                 />
+
+                <p className={clsx(styles.mtop5, styles.text)}>
+                  <span className={styles.textPrimary}>Conteúdo sensível:</span> se o seu relato aborda temas que podem ser
+                  sensíveis para outras pessoas (como por exemplo estupro, abuso
+                  psicológico, entre outros) é importante que você indique na
+                  caixa de texto abaixo
+                </p>
+                </div>
+               
               </div>
               <div className={styles.buttons}>
                 <Button
+                 style={{
+                  borderRadius: 50,
+                  height: 50,
+                }}
                   color="primary"
                   variant="contained"
                   fullWidth

@@ -2,6 +2,10 @@
   @apply text-2xl;
 }
 
+.form{
+  margin-bottom: 45%;
+}
+
 .inputs {
   gap: 20px;
   display: flex;
@@ -12,3 +16,37 @@
 .page {
   height: calc(100vh - 5rem);
 }
+
+
+.custom fieldset {
+  border-radius: 50px;
+}
+
+.area fieldset {
+  border-radius: 20px;
+}
+
+.mtop50{
+  margin-top: 10%;
+}
+
+.mtop5{
+  margin-top: 5%;
+}
+
+.textPrimary{
+  color: #ffc0cb;
+  font-weight: 600;
+}
+
+.text{
+  text-align: justify;
+  color: gray;
+  font-size: 14px;
+}
+
+.buttons{
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+
