@@ -1,8 +1,7 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator'
-import { Comment } from '../../../../db/models/comment.model'
+import { CommentCreate } from '../../../../db/models/comment.model'
 
-export class CreateCommentDto implements Comment {
-	idComment: number
+export class CreateCommentDto implements CommentCreate {
 	idPost: number
 
 	idUser: number
