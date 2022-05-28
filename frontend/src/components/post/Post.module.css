@@ -1,0 +1,15 @@
+.image {
+  height: 45px;
+  border: 3px solid #ff8da1;
+  box-sizing: content-box;
+}
+
+.input {
+  width: 60%;
+  margin-top: 13px !important;
+}
+
+.title {
+  color: #ff8da1;
+  font-size: 20px;
+}
