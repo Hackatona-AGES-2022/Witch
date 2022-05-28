@@ -1,7 +1,12 @@
 import clsx from "clsx";
+import { FeedPost } from "../../types/post";
 import styles from "./Post.module.css";
 
-export function Post() {
+interface PostProps {
+  post: FeedPost;
+}
+
+export function Post({ post }: PostProps) {
   return (
     <div className="flex flex-col p-6">
       <div className="flex items-center gap-2">
@@ -12,16 +17,10 @@ export function Post() {
             alt="avatar"
           />
         </div>
-        <p className={styles.title}>Gabriela Azevedo</p>
+        <p className={styles.title}>{post.user.name}</p>
       </div>
       <div className="mt-1">
-        <p>
-          Me culpava de um assédio q eu sofri do meu namorado, ele controlava as
-          roupas q eu usava e me manipulava pra fazer sexo com ele quando ele
-          queria. Flertou com outra na minha cara e dps falou q eu era paranoica
-          insegura me viu abraçando uma criança e disse q se me visse abraçando
-          outro cara me arrebentava.
-        </p>
+        <p>{post.content}</p>
       </div>
     </div>
   );
