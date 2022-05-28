@@ -1,5 +1,6 @@
 .page {
   height: calc(100vh - 5rem - 106px);
+  overflow-y: scroll;
 }
 
 .title {
