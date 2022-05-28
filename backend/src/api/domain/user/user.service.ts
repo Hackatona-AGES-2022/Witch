@@ -39,9 +39,10 @@ export class UserService extends BaseService<User, number> {
 	}
 
 	async register(user: UserCreate): Promise<number> {
-		if (await this.existsByEmail(user.email)) {
-			throw new BadRequestException('E-mail já cadastrado')
+		if ((await this.existsByEmail(user.email)) || (await this.existsByCPF(user.cpf))) {
+			throw new BadRequestException('Usuário já cadastrado')
 		}
+
 		const encryptedPassword = this.encryptor.encrypt(user.password)
 		const model: UserCreate = {
 			email: user.email,
@@ -60,6 +61,10 @@ export class UserService extends BaseService<User, number> {
 
 	private async existsByEmail(email: string): Promise<boolean> {
 		return this.table.whereExists(this.table.where('email', email)).first()
+	}
+
+	private async existsByCPF(cpf: string): Promise<boolean> {
+		return this.table.whereExists(this.table.where('cpf', cpf)).first()
 	}
 
 	protected get table(): Knex.QueryBuilder<User> {
