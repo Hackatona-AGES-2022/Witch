@@ -1,4 +1,4 @@
-import { Navbar } from "../../components/header/Navbar";
+import { Navbar } from "../../components/navbar/Navbar";
 import styles from "./Home.module.css";
 
 export function Home() {
