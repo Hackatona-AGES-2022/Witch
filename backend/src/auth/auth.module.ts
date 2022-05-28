@@ -8,7 +8,6 @@ import { AuthController } from './auth.controller'
 import { ClientAuthService } from './services/client-auth.service'
 import { ClientJwtStrategy } from './strategies/client/client-jwt.strategy'
 import { ClientLocalStrategy } from './strategies/client/client-local.strategy'
-import { FacebookStrategy } from './strategies/social/facebook.strategy'
 
 @Module({
 	imports: [
@@ -21,6 +20,6 @@ import { FacebookStrategy } from './strategies/social/facebook.strategy'
 		}),
 	],
 	controllers: [AuthController],
-	providers: [ClientLocalStrategy, ClientAuthService, ClientJwtStrategy, FacebookStrategy, Logger],
+	providers: [ClientLocalStrategy, ClientAuthService, ClientJwtStrategy, Logger],
 })
 export class AuthModule {}

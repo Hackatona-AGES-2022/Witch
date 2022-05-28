@@ -38,22 +38,6 @@ export class UserService extends BaseService<User, number> {
 		return this.table.where({ email: username }).first()
 	}
 
-	async facebookSignIn(profile: Profile): Promise<User> {
-		const user = await this.table.where({ idFacebook: profile.id }).first()
-		if (user) {
-			return user
-		}
-		const newUser: UserCreate = {
-			email: profile.emails[0].value,
-			name: `${profile.name.givenName} ${profile.name.familyName}`,
-			password: profile.emails[0].value + profile.id,
-			idFacebook: profile.id,
-		}
-
-		const id = await this.register(newUser)
-		return this.findById(id)
-	}
-
 	async register(user: UserCreate): Promise<number> {
 		if (await this.existsByEmail(user.email)) {
 			throw new BadRequestException('E-mail já cadastrado')
@@ -66,6 +50,9 @@ export class UserService extends BaseService<User, number> {
 			dateBirth: new Date(user.dateBirth),
 			idFacebook: user.idFacebook,
 			idGoogle: user.idGoogle,
+			cpf: user.cpf,
+			username: user.username,
+			avatar: user.avatar,
 		}
 		const [id] = (await super.create(model)) as number[]
 		return id

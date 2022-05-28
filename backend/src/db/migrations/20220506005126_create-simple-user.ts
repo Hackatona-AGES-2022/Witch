@@ -8,6 +8,8 @@ export async function up(knex: Knex): Promise<void> {
 		email: 'someuser@email.com',
 		name: 'Jon',
 		password: cryptoService.encrypt('abc123'),
+		cpf: '12345678910',
+		username: 'abc123',
 	}
 	return knex.table('users').insert(user)
 }
