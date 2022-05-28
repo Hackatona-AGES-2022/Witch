@@ -35,10 +35,10 @@ export function Navbar() {
       <div className={clsx("flex flex-1", styles.iconContainer)}>
         <ul className="flex gap-9 m-2 text-white">
           <li className="cursor-pointer">
-            <img src={home} />
+            <img src={home} onClick={() => navigate("/home")} />
           </li>
           <li className="cursor-pointer">
-            <img src={document} />
+            <img src={document} onClick={() => navigate("/home")} />
           </li>
         </ul>
         <ul className="flex gap-9 m-2 text-white">
@@ -46,7 +46,7 @@ export function Navbar() {
             <img src={profile} />
           </li>
           <li className="cursor-pointer">
-            <img src={infoSquare} />
+            <img src={infoSquare} onClick={() => navigate("/info")} />
           </li>
         </ul>
       </div>
