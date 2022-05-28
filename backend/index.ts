@@ -1,5 +1,6 @@
 import { Address } from './src/db/models/address.model'
 import { Category } from './src/db/models/category.model'
+import { Comment } from './src/db/models/comment.model'
 import { PostCategory } from './src/db/models/post-category.model'
 import { Post } from './src/db/models/post.model'
 import { SavedPost } from './src/db/models/saved-posts.model'
