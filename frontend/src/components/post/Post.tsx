@@ -3,6 +3,9 @@ import { FeedPost } from "../../types/post";
 import styles from "./Post.module.css";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import { useState } from "react";
+import chat from "./chat.svg";
+import save from "./save.svg";
+import support from "./support.svg";
 
 interface PostProps {
   post: FeedPost;
@@ -47,6 +50,12 @@ export function Post({ post }: PostProps) {
           </p>
         </span>
       )}
+
+      <span className="flex justify-end gap-2">
+        <img src={chat} />
+        <img src={support} />
+        <img src={save} />
+      </span>
     </div>
   );
 }
