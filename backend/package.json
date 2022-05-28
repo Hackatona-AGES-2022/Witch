@@ -11,7 +11,7 @@
 		"prestart:dev": "export NODE_ENV=development && npx knex migrate:latest --env development",
 		"prestart:prod": "export NODE_ENV=production && npx knex migrate:latest --env production --knexfile ./dist/knexfile.js",
 		"build": "npx @nestjs/cli build",
-		"postbuild": "cp .env.production dist/ && cp ./src/db/init.sql ./dist/src/db/init.sql",
+		"postbuild": "cp .env.production dist/ && cp ./src/db/init.sql ./dist/src/db/init.sql && cp ./src/db/increment.sql ./dist/src/db/increment.sql",
 		"format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
 		"start": "export TZ=America/Sao_Paulo && nest start",
 		"start:dev": "export NODE_ENV=development && export TZ=America/Sao_Paulo && nest start --watch",
